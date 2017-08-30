@@ -98,7 +98,8 @@ class RegenerateProductUrlCommand extends Command
                 UrlRewrite::STORE_ID => $store_id
             ]);
             try {
-                $product->setStoreId($store_id);
+              // we likely no longer require this due to if statement above.
+//                $product->setStoreId($store_id);
                 $this->urlPersist->replace(
                     $this->productUrlRewriteGenerator->generate($product)
                 );
