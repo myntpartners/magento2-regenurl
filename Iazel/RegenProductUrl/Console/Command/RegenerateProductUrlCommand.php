@@ -69,7 +69,10 @@ class RegenerateProductUrlCommand extends Command
 
     public function execute(InputInterface $inp, OutputInterface $out)
     {
-        if (!$this->state->getAreaCode()) {
+        try {
+          // fix for #20 - https://github.com/Iazel/magento2-regenurl/issues/20
+          $this->state->getAreaCode();
+        } catch (\Exception $ex) {
             $this->state->setAreaCode('adminhtml');
         }
 
